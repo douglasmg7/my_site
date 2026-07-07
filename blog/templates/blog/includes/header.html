@@ -1,6 +1,6 @@
 <header id='main-navigation'>
-    <h1><a href=''>My Blog</a></h1>
+    <h1><a href='{% url "blog-index" %}'>My Blog</a></h1>
     <nav>
-        <a href="{% url 'blog_index' %}">{{active_page}}</a>
+        <a href="{% url 'all-posts' %}">All Posts{{active_page}}</a>
     </nav>
 </header>
