@@ -10,11 +10,4 @@ def posts(request):
     return render(request, 'blog/all-posts.html')
 
 def post_detail(request, slug):
-    pass
-#  def monthly_challenge(request, month):
-    #  try:
-        #  return render(request, 'challenges/challenge.html', {'month': month, 'message': monthly_challenges[month]})
-    #  except:
-        #  raise Http404()
-        #  #  return HttpResponseNotFound('Month not supported yet')
-
+    return render(request, 'blog/post-detail.html')
