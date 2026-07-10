@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
 
-posts = [
+posts_data = [
     {
         "slug": "hike-in-the-mountains",
         "image": "mountains.jpg",
@@ -73,11 +73,13 @@ posts = [
 
 
 def index(request):
-    return render(request, 'blog/index.html')
+    last_thre_posts = sorted(posts_data, key=lambda item: item['date'])[-2:]
+    return render(request, 'blog/index.html', {"posts": last_thre_posts})
 
 def posts(request):
-    last_thre_posts = sorted(posts, key=lambda item: item['date'])[-3:]
-    return render(request, 'blog/all-posts.html', {"posts": last_thre_posts})
+    all_posts_by_date = sorted(posts_data, key=lambda item: item['date'])
+    return render(request, 'blog/all-posts.html', {"posts": all_posts_by_date})
 
 def post_detail(request, slug):
-    return render(request, 'blog/post-detail.html')
+    post = next(post for post in posts_data if post['slug'] == slug)
+    return render(request, 'blog/post-detail.html', {'post': post})
